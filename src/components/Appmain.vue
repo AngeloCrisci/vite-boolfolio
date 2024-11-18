@@ -7,17 +7,34 @@
         data(){
             return{
                 projectsList : [],
+                technologyList : [],
             }
         },
         methods: {
             getProjects(){
                 axios.get('http://127.0.0.1:8000/api/projects')
-                .then(response) => {
+                .then((response) => {
                     // handle success
                     console.log(response.data.results);
 
                     this.projectsList = response.data.results;
-                }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                } );
+            },
+            getTechnology(){
+                axios.get('http://127.0.0.1:8000/api/technology')
+                .then((response) => {
+                    // handle success
+                    console.log(response.data.results);
+
+                    this.technologyList= response.data.results;
+                })
                 .catch(function (error) {
                     // handle error
                     console.log(error);
@@ -29,11 +46,13 @@
         },
         created(){
             this.getProjects();
-        }
+            this.getTechnology();
+        },
+
         computed:{
 
         },
-    },
+    };
     
 </script>
 
@@ -46,8 +65,11 @@
             <div class="row">
                 <div class="card col-3" v-for="project in projectsList" :key="project.id" style="width: 18rem;">     
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <h3 class="card-title">
                         {{ project.name }}
+                    </h3>
+                    <h5 class="card-text" v-for="technology in technologyList" :key="technology.id" >
+                        {{ technology.name }}
                     </h5>
                     <p class="card-text">
                          {{ project.date }}
@@ -58,7 +80,7 @@
                     <p class="card-text">
                          {{ project.date }}
                     </p>
-                    <a :href="{{ description.link }}" class="btn btn-primary">
+                    <a :href= project.link  class="btn btn-primary">
                         Link
                     </a>
                 </div>
