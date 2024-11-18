@@ -1,9 +1,17 @@
 <script>
     import axios from "axios";
+    import AppHeader from "./AppHeader.vue";
+    import AppFooter from "./AppFooter.vue";
+import AppHeader from "./AppHeader.vue";
+import AppFooter from "./AppFooter.vue";
 
 
     export default {
         name: "Appmain",
+        components: [
+            AppHeader,
+            AppFooter
+        ] ,
         data(){
             return{
                 projectsList : [],
@@ -57,9 +65,7 @@
 </script>
 
 <template>
-    <h1 class="text-center">
-        MY PROJECTS
-    </h1>
+    <AppHeader/>
     <main>
         <div class="container">
             <div class="row">
@@ -88,6 +94,7 @@
             </div>
         </div>
     </main>
+    <AppFooter/>
 </template>
 
 <style scoped>
