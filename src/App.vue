@@ -1,5 +1,7 @@
 <script>
-  import Appmain from "./components/Appmain.vue";
+  import { RouterView } from "vue-router";
+  import AppHeader from "./components/partials/AppHeader.vue";
+  import AppFooter from "./components/partials/AppFooter.vue";
 
   export default {
     data(){
@@ -8,13 +10,17 @@
       }
     },
     components:{
-      Appmain,
+      RouterView,
+      AppHeader,
+      AppFooter
     }
   }
 </script>
 
 <template>
-  <Appmain/>
+  <AppHeader/>
+  <RouterView/>
+  <AppFooter/>
 </template>
 
 <style lang="scss">
